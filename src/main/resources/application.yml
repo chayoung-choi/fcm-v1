@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: fcm-v1
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:./db/H2/data;AUTO_SERVER=true
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true # JPA Log
