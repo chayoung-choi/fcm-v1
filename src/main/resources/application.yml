@@ -4,8 +4,12 @@ spring:
   thymeleaf:
     cache: false
     check-template-location: true
-    prefix: classpath:/templates/
     suffix: .html
+    #    prefix: classpath:/templates/
+    prefix: file:///${user.dir}/src/main/resources/templates/
+  web:
+    resources:
+      static-locations: file:///${user.dir}/src/main/resources/static/
   devtools:
     restart:
       enabled: true

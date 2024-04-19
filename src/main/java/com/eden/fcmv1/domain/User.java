@@ -1,4 +1,4 @@
-package com.eden.fcmv1.api.domain;
+package com.eden.fcmv1.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,4 +24,10 @@ public class User extends BaseTime {
   private Long id;
 
   private String name;
+
+  private String fcmToken;
+
+  public void update(String name) {
+    this.name = name;
+  }
 }

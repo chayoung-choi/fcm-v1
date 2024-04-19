@@ -1,4 +1,4 @@
-package com.eden.fcmv1.api.domain;
+package com.eden.fcmv1.domain;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

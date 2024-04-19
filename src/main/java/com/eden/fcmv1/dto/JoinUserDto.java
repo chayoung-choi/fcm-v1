@@ -1,6 +1,5 @@
-package com.eden.fcmv1.api.dto;
+package com.eden.fcmv1.dto;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +16,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class JoinUserDto {
 
-  private Long id;
   private String name;
-  private LocalDateTime createdAt;
-  private LocalDateTime updatedAt;
 }
