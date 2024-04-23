@@ -31,8 +31,8 @@
         </td>
         <td th:text="${user.name}"></td>
         <td>
-          <span th:if="${#strings.isEmpty(user.fcmToken) }">-</span>
-          <span th:if="${not #strings.isEmpty(user.fcmToken) }">사용</span>
+          <span th:if="${#strings.isEmpty(user.fcmToken)}">-</span>
+          <span th:if="${not #strings.isEmpty(user.fcmToken)}">사용</span>
         </td>
         <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
         <td th:text="${#temporals.format(user.updatedAt, 'yyyy-MM-dd HH:mm')}"></td>

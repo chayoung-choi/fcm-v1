@@ -36,6 +36,31 @@
       </button>
     </div>
   </div>
+  <div th:if="${not #strings.isEmpty(user.fcmToken)}">
+    <hr>
+    <h3>
+      FCM 발송하기
+    </h3>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Title</span>
+      <input aria-describedby="title" aria-label="input" class="form-control" id="title"
+             placeholder="FCM TITLE"
+             type="text"
+             value="FCM TITLE">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Message</span>
+      <input aria-describedby="Message" aria-label="input" class="form-control" id="message"
+             placeholder="FCM Message"
+             type="text"
+             value="FCM Message">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" onclick="sendFcm()">
+        발송
+      </button>
+    </div>
+  </div>
   <script type="text/javascript">
     const saveUser = () => {
       const id = document.querySelector('#id').value;
@@ -80,6 +105,29 @@
       })
       .catch((error) => {
         alert("삭제에 실패하였습니다.");
+        console.log(error);
+      });
+    }
+
+    const sendFcm = () => {
+      const id = document.querySelector('#id').value;
+      const title = document.querySelector('#title').value;
+      const message = document.querySelector('#message').value;
+
+      const params = {
+        id,
+        title,
+        message,
+      }
+
+      console.log('params', params)
+      axios.post(`/api/fcm/v1/send-message`, params)
+      .then(function (response) {
+        console.log(response);
+        alert("발송되었습니다!");
+      })
+      .catch(function (error) {
+        alert("발송 실패하였습니다.");
         console.log(error);
       });
     }

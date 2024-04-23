@@ -1,21 +1,11 @@
 package com.eden.fcmv1.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * 회원
  */
-@ToString
-@Setter
-@Builder
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class JoinUserDto {
 
   private String name;

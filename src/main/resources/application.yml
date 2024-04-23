@@ -27,3 +27,5 @@ spring:
     properties:
       hibernate:
         format_sql: true # JPA Log
+firebase:
+  service-account-file: firebase-service-account.json
