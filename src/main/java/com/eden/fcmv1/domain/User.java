@@ -26,8 +26,4 @@ public class User extends BaseTime {
   private String name;
 
   private String fcmToken;
-
-  public void update(String name) {
-    this.name = name;
-  }
 }

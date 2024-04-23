@@ -1,5 +1,6 @@
 package com.eden.fcmv1.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTime {
 
+  @Column(updatable = false)
   @CreatedDate
   private LocalDateTime createdAt;
 

@@ -34,7 +34,7 @@ public class ViewController {
   }
 
   @GetMapping(value = "/user/{id}")
-  public String user(@PathVariable Long id, Model model) {
+  public String user(@PathVariable(name = "id") Long id, Model model) {
     log.info("ViewController.user :: {}", id);
     UserDto userDto = userService.getUser(id);
     model.addAttribute("user", userDto);

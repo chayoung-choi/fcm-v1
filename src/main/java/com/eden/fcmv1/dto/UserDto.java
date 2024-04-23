@@ -21,6 +21,7 @@ public class UserDto {
 
   private Long id;
   private String name;
+  private String fcmToken;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 }

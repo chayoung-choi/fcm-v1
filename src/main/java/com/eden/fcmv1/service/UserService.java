@@ -28,8 +28,7 @@ public class UserService {
 
   @Transactional
   public Long save(UserDto userDto) {
-    User user = userRepository.findById(userDto.getId()).orElseThrow();
-    user.update(userDto.getName());
+    User user = modelMapper.map(userDto, User.class);
     return userRepository.save(user).getId();
   }
 
@@ -45,5 +44,10 @@ public class UserService {
     List<User> userList = userRepository.findAll();
     return modelMapper.map(userList, new TypeToken<List<UserDto>>() {
     }.getType());
+  }
+
+  @Transactional
+  public void deleteUser(Long id) {
+    userRepository.deleteById(id);
   }
 }
