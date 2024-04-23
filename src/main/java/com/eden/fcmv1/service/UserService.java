@@ -1,8 +1,11 @@
 package com.eden.fcmv1.service;
 
+import static com.eden.fcmv1.service.FcmService.DEFAULT_FCM_TOPIC;
+
 import com.eden.fcmv1.domain.User;
 import com.eden.fcmv1.dto.UserDto;
 import com.eden.fcmv1.repository.UserRepository;
+import io.micrometer.common.util.StringUtils;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -18,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
   private final UserRepository userRepository;
+  private final FcmService fcmService;
   private final ModelMapper modelMapper;
 
   @Transactional
@@ -29,6 +33,9 @@ public class UserService {
   @Transactional
   public Long save(UserDto userDto) {
     User user = modelMapper.map(userDto, User.class);
+    if (StringUtils.isNotBlank(user.getFcmToken())) {
+      fcmService.subscribeToTopic(DEFAULT_FCM_TOPIC, user.getFcmToken());
+    }
     return userRepository.save(user).getId();
   }
 
@@ -48,6 +55,10 @@ public class UserService {
 
   @Transactional
   public void deleteUser(Long id) {
+    User user = userRepository.findById(id).orElseThrow();
+    if (StringUtils.isNotBlank(user.getFcmToken())) {
+      fcmService.unsubscribeFromTopic(DEFAULT_FCM_TOPIC, user.getFcmToken());
+    }
     userRepository.deleteById(id);
   }
 }

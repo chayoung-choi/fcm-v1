@@ -34,11 +34,16 @@ public class FcmApiController {
     log.info("Sending FCM message: {}", fcmMessageDto);
     UserDto user = userService.getUser(fcmMessageDto.getId());
     try {
-      fcmService.sendMessageByToken(fcmMessageDto.getTitle(), fcmMessageDto.getMessage(),
-          user.getFcmToken());
+      if (Boolean.TRUE.equals(fcmMessageDto.getIsTopic())) {
+        fcmService.sendMessageByTopic(fcmMessageDto.getTitle(), fcmMessageDto.getMessage(),
+            FcmService.DEFAULT_FCM_TOPIC);
+      } else {
+        fcmService.sendMessageByToken(fcmMessageDto.getTitle(), fcmMessageDto.getMessage(),
+            user.getFcmToken());
+      }
     } catch (FirebaseMessagingException e) {
       log.error(e.getMessage());
-      throw new ServiceUnavailableException("사용 불가.");
+      throw new ServiceUnavailableException("사용 불가");
     }
   }
 }

@@ -11,4 +11,5 @@ public class FcmMessageDto {
   private Long id;
   private String title;
   private String message;
+  private Boolean isTopic;
 }
